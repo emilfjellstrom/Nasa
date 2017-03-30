@@ -1,71 +1,67 @@
 //keys :NNKOjkoul8n1CH18TWA9gwngW1s1SmjESPjNoUFo
 
-var projectNasa = (function(){
+const projectNasa = ((() => ({
+  valueCheck() {
+    if (lon.value > 180 || lon.value < -180 || lat.value > 90 || lat.value < -90 || lon.value == 0 || lat.value == 0){
+      alert("Wrong input, specify between: lon 180/-180 and lat 90/-90");
+    }
+    else{
+      projectNasa.nasaEarth();
+    }
+  },
 
-return{
+  nasaEarth() {
+  const lon = document.getElementById("lon").value;
+  const lat = document.getElementById("lat").value; 
+  let xhr = new XMLHttpRequest();
+  let url = `https://api.nasa.gov/planetary/earth/imagery?lon=${lon}&lat=${lat}&api_key=NNKOjkoul8n1CH18TWA9gwngW1s1SmjESPjNoUFo`;
 
-valueCheck: function(){
-  if (lon.value > 180 || lon.value < -180 || lat.value > 90 || lat.value < -90 || lon.value == 0 || lat.value == 0){
-    alert("Wrong input, specify between: lon 180/-180 and lat 90/-90");
+  xhr.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        myObj = JSON.parse(this.responseText);
+        document.getElementById("demo").innerHTML = myObj;
+      }
+      else if (this.status == 404){
+        alert("Error!");
+      }
+  };
+
+  xhr.open("GET", url, false);
+  xhr.send();
+  console.log(xhr.status);
+  console.log(xhr.statusText);
+  },
+
+  postError() {
+  if (myObj.error != null){
+    document.getElementById("demo").innerHTML = `
+  <input id="lon" placeholder="lon" value=""></input>
+  <input id="lat" placeholder="lat" value=""></input>
+  <button onclick="valueCheck()">nasaEarth</button>`;
+  alert(`The image of this section cant be shown! Try again.\n\nError Message: ${myObj.error}`);
   }
   else{
-    projectNasa.nasaEarth();
-  }
-},
+    projectNasa.post();
+  };
+  },
 
-nasaEarth: function(){
-var lon = document.getElementById("lon").value;
-var lat = document.getElementById("lat").value; 
-let xhr = new XMLHttpRequest();
-let url = `https://api.nasa.gov/planetary/earth/imagery?lon=${lon}&lat=${lat}&api_key=NNKOjkoul8n1CH18TWA9gwngW1s1SmjESPjNoUFo`;
-
-xhr.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      myObj = JSON.parse(this.responseText);
-      document.getElementById("demo").innerHTML = myObj;
-    }
-    else if (this.status == 404){
-      alert("Error!");
-    }
-};
-
-xhr.open("GET", url, false);
-xhr.send();
-console.log(xhr.status);
-console.log(xhr.statusText);
-},
-
-postError: function(){
-if (myObj.error != null){
+  post() {
   document.getElementById("demo").innerHTML = `
-<input id="lon" placeholder="lon" value=""></input>
-<input id="lat" placeholder="lat" value=""></input>
-<button onclick="valueCheck()">nasaEarth</button>`;
-alert("The image of this section can't be shown! Try again.\n\nError Message: " + myObj.error);
-}
-else{
-  projectNasa.post();
-};
-},
-
-post: function(){
-document.getElementById("demo").innerHTML = `
-<input id="lon" placeholder="lon" value=""></input>
-<input id="lat" placeholder="lat" value=""></input>
-<button onclick="valueCheck()">nasaEarth</button>
-<div id="democontainer" class="box">
-<img class="nasaImage" src="${myObj.url}">
-<p>Date of imagery ${myObj.date}</p>
-</div>`;
-}
-};
-})();
+  <input id="lon" placeholder="lon" value=""></input>
+  <input id="lat" placeholder="lat" value=""></input>
+  <button onclick="valueCheck()">nasaEarth</button>
+  <div id="democontainer" class="box">
+  <img class="nasaImage" src="${myObj.url}">
+  <p>Date of imagery ${myObj.date}</p>
+  </div>`;
+  }
+})))();
 
 function valueCheck(){
 return projectNasa.valueCheck(), projectNasa.postError();
 };
 
-var addClass = document.getElementById("addBox");
+const addClass = document.getElementById("addBox");
 addClass.addEventListener("click", addBox);
 
 function addBox(){
@@ -73,14 +69,14 @@ function addBox(){
 }
 
 function nasaDaily(){
-var url = "https://api.nasa.gov/planetary/apod?api_key=NNKOjkoul8n1CH18TWA9gwngW1s1SmjESPjNoUFo";
+const url = "https://api.nasa.gov/planetary/apod?api_key=NNKOjkoul8n1CH18TWA9gwngW1s1SmjESPjNoUFo";
 
 
 $.ajax({
-  url: url,
-  success: function(result){
+  url,
+  success(result) {
   if("copyright" in result) {
-    $("#copyright").text("Image Credits: " + result.copyright);
+    $("#copyright").text(`Image Credits: ${result.copyright}`);
   }
   else {
     $("#copyright").text("Image Credits: " + "Public Domain");
@@ -97,7 +93,7 @@ $.ajax({
   $("#apod_explaination").text(result.explanation);
   $("#apod_title").text(result.title);
 },
-  error: function(error){
+  error(error) {
     console.log("Error", error);
  } 
 });
