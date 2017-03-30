@@ -1,0 +1,28 @@
+ <!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<meta charset="utf-8">
+	<title>Page Title</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+<body>
+<div id="container">
+	<div id="demo">
+		<input id="lon" placeholder="lon"></input>
+		<input id="lat" placeholder="lat"></input>
+		<button onclick="valueCheck()">nasaEarth</button></div>
+	<div id="demo2">
+		<button id="addBox" onclick="nasaDaily()">nasaDaily</button></br>
+		<div id="demo2container">
+			<img id="apod_img_id" width="250px"/>
+	  		<iframe id="apod_vid_id" type="text/html" width="640" height="385" frameborder="0"></iframe>
+	  		<p id="copyright"></p>
+	  		<h3 id="apod_title"></h3>
+	  		<p id="apod_explaination"></p>
+	  	</div>
+	</div>
+</div>
+<script src="main.js"></script>
+</body>
+</html> 

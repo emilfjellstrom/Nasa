@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+*{
+  margin: 0;
+}
+html, body{
+  height: 100%
+}
+body{
+	background-color: #f2f2f2;
+}
+p, h1, h2, h3{
+  font-family: Roboto;
+}
+#container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-image: url(image/nasalogo.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 100%;
+}
+#demo2container{
+}
+.box{
+  margin-top: 1rem;
+  background-color: rgba(209, 209, 209, 0.95);
+  border-radius: 4px;
+  padding: 10px;
+}
+#demo, #demo2{
+      margin-top: 1rem;
+	vertical-align: top;
+	display:inline-block;
+	width: auto;
+  }
+#demo2{
+	width: 50%;
+}
+#demo2 img{
+ border-radius: 2px;
+}
+.nasaImage{
+  width: 100%;
+}
+input { 
+  font-size: 16px;
+  line-height: 16px;
+  height: 16px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 6px;
+  font-family: Lato, sans-serif;
+  color: #888;
+}
+button {
+  background: #f2f2f2;
+  font-size: 16px;
+  line-height: 16px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+  width: 100px;
+  height: 35px;
+  border-radius: 6px;
+  font-family: Lato, sans-serif;
+  color: #888;
+  cursor: pointer;
+}
+button:hover {
+	color: black;
+	background: lightgray;
+}
+@media(max-width: 1050px){
+  #container{
+    background-image: none;
+    flex-direction: column;
+    align-content:center;
+    justify-content: initial;
+  }
+  #demo, #demo2{
+    margin: auto 0;
+    width: auto;
+  }
+  button{
+    margin-top: 1rem;
+  }
+  .box{
+    border-radius: 0px;
+  }
+  input{
+    width: 100px;
+  }
+}
