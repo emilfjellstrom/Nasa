@@ -11,6 +11,9 @@ body{
 p, h1, h2, h3{
   font-family: Roboto;
 }
+h3{
+  padding: 1rem 0 1rem 0;
+}
 #container{
   display: flex;
   flex-direction: row;
@@ -21,6 +24,10 @@ p, h1, h2, h3{
   height: 100%;
 }
 #demo2container{
+  width: 512px;
+}
+#rightcontainer{
+  float: right;
 }
 .box{
   margin-top: 1rem;
@@ -29,15 +36,17 @@ p, h1, h2, h3{
   padding: 10px;
 }
 #demo, #demo2{
-      margin-top: 1rem;
+  margin-top: 1rem;
 	vertical-align: top;
 	display:inline-block;
 	width: auto;
   }
 #demo2{
+  float: right;
 	width: 50%;
 }
 #demo2 img{
+ max-width: 512px;
  border-radius: 2px;
 }
 .nasaImage{
@@ -77,6 +86,12 @@ button:hover {
     flex-direction: column;
     align-content:center;
     justify-content: initial;
+  }
+  #rightcontainer{
+  float: left;
+  }
+  #demo2container{
+  width: auto;
   }
   #demo, #demo2{
     margin: auto 0;
